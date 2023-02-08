@@ -7,9 +7,10 @@ import dayjs from 'dayjs';
 import Touchable from '../Button/Touchable';
 
 interface IssueItemType {
-  issue: any;
-  onPress: (item: any) => void;
+  issue: issueType;
+  onPress: (item: issueType) => void;
 }
+
 const IssueItem = ({issue, onPress}: IssueItemType) => {
   return (
     <Touchable onPress={onPress}>
@@ -37,6 +38,7 @@ const IssueItem = ({issue, onPress}: IssueItemType) => {
     </Touchable>
   );
 };
+
 const styles = StyleSheet.create({
   margin: {
     marginRight: 20,

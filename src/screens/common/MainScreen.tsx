@@ -16,7 +16,7 @@ const MainScreen = ({navigation}: Props) => {
     }
   }, []);
 
-  const onPressIssue = (item: any) => {
+  const onPressIssue = (item: issueType) => {
     navigation.navigate('DetailIssue', {
       issue: item,
     });
@@ -33,14 +33,17 @@ const MainScreen = ({navigation}: Props) => {
               onPressIssue(item);
             }}
           />
-          {issueContext?.issues.length > 5 && index === 3 && (
-            <Image
-              source={{
-                uri: 'https://hellobot-test.s3.ap-northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7',
-              }}
-              style={styles.image}
-            />
-          )}
+          {/*5개 이상일때만..*/}
+          {issueContext?.issues &&
+            issueContext?.issues.length >= 5 &&
+            index === 3 && (
+              <Image
+                source={{
+                  uri: 'https://hellobot-test.s3.ap-northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7',
+                }}
+                style={styles.image}
+              />
+            )}
         </>
       )}
       keyExtractor={(item, index) => `key${index}`}

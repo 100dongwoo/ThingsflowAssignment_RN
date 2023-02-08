@@ -1,4 +1,4 @@
-import React, {ReactChild, ReactChildren} from 'react';
+import React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 
 interface Type {

@@ -12,7 +12,9 @@ const DetailIssueScreen = ({route}: Props) => {
   const {issue} = route?.params;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{paddingBottom: 40}}>
       <RowContainer style={styles.spaceBetween}>
         <Image source={{uri: issue?.user?.avatar_url}} style={styles.avatar} />
         <RowContainer style={styles.topBox}>
@@ -23,7 +25,7 @@ const DetailIssueScreen = ({route}: Props) => {
                 style={styles.defaultMarginRight}
               />
               <Bold15Label
-                text={`#${issue.title}`}
+                text={`#${issue?.title}`}
                 numberOfLines={1}
                 style={{flex: 1}}
               />
@@ -36,7 +38,7 @@ const DetailIssueScreen = ({route}: Props) => {
               />
               <Normal13Label text={'작성일 '} />
               <Normal13Label
-                text={dayjs(issue.updated_at).format('YYYY년 MM월 DD일')}
+                text={dayjs(issue?.updated_at).format('YYYY년 MM월 DD일')}
               />
             </RowContainer>
           </View>
@@ -46,6 +48,7 @@ const DetailIssueScreen = ({route}: Props) => {
           />
         </RowContainer>
       </RowContainer>
+      <Normal13Label text={issue?.body} style={styles.body} />
     </ScrollView>
   );
 };
@@ -71,6 +74,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     borderBottomWidth: 1,
     paddingBottom: 10,
+  },
+  body: {
+    marginTop: 40,
   },
 });
 export default DetailIssueScreen;

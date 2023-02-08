@@ -4,8 +4,8 @@ import {Alert, Text, View} from 'react-native';
 import axios from 'axios';
 
 type ContextType = null | {
-  issues?: any;
-  fetchIssue?: any;
+  issues: issueType[];
+  fetchIssue: (value?: number) => void;
   page: number;
   setPage: (data: number) => void;
   resetIssue: () => void;
@@ -14,7 +14,7 @@ type ContextType = null | {
 export const IssueContext = createContext<ContextType>(null);
 
 const IssueProvider = ({children}: {children: JSX.Element}) => {
-  const [issues, setIssues] = useState<any>([]);
+  const [issues, setIssues] = useState<issueType[]>([]);
   const [page, setPage] = useState(1);
 
   const resetIssue = () => {
@@ -28,9 +28,6 @@ const IssueProvider = ({children}: {children: JSX.Element}) => {
         'https://api.github.com/repos/angular/angular-cli/issues',
         {
           params: {sort: 'comments', per_page: 10, page: value, state: 'open'},
-          headers: {
-            Authorization: 'Bearer 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',
-          },
         },
       );
       console.log(res.data);

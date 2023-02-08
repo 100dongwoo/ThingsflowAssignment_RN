@@ -1,10 +1,10 @@
-import React, {ReactChild, ReactChildren} from 'react';
+import React from 'react';
 import {StyleProp, TouchableOpacity, View, ViewStyle} from 'react-native';
 
 interface Type {
   children?: JSX.Element | JSX.Element[];
   style?: StyleProp<ViewStyle>;
-  onPress?: () => void;
+  onPress?: (item?: any) => void;
   activeOpacity?: number;
 }
 
