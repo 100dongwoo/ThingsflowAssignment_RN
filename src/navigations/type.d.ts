@@ -1,4 +1,4 @@
 type RootStackParamList = {
   Main: undefined;
-  DetailIssue: undefined;
+  DetailIssue: {issue: any};
 };

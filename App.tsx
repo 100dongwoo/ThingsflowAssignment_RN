@@ -18,6 +18,7 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootStack from './src/navigations/RootStack';
 import {NavigationContainer} from '@react-navigation/native';
+import IssueProvider from './src/contexts/IssueProvider';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -45,7 +46,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <AppProvider contexts={[]}>
+      <AppProvider contexts={[IssueProvider]}>
         <SafeAreaView style={[styles.container, backgroundStyle]}>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
           <RootStack />
