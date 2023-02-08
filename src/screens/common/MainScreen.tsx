@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useLayoutEffect} from 'react';
 
 import {
   FlatList,
@@ -17,6 +17,12 @@ import Touchable from '../../components/Button/Touchable';
 type Props = NativeStackScreenProps<RootStackParamList>;
 const MainScreen = ({navigation}: Props) => {
   const issueContext = useContext(IssueContext);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: issueContext?.headerTitle,
+    });
+  }, []);
 
   useEffect(() => {
     if (issueContext?.issues?.length === 0) {

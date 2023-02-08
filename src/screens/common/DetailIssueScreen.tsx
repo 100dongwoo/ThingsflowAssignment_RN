@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useContext, useLayoutEffect} from 'react';
 
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RowContainer from '../../components/Container/RowContainer';
 import {Bold15Label, Normal13Label} from '../../components/Label';
 import dayjs from 'dayjs';
+import {IssueContext} from '../../contexts/IssueProvider';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-const DetailIssueScreen = ({route}: Props) => {
+const DetailIssueScreen = ({navigation, route}: Props) => {
   const {issue} = route?.params;
+  const issueContext = useContext(IssueContext);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: issueContext?.headerTitle,
+    });
+  }, []);
 
   return (
     <ScrollView
