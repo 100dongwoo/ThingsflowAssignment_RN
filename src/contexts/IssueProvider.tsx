@@ -9,6 +9,7 @@ type ContextType = null | {
   page: number;
   setPage: (data: number) => void;
   resetIssue: () => void;
+  isLoading: boolean;
 };
 
 export const IssueContext = createContext<ContextType>(null);
@@ -16,6 +17,7 @@ export const IssueContext = createContext<ContextType>(null);
 const IssueProvider = ({children}: {children: JSX.Element}) => {
   const [issues, setIssues] = useState<issueType[]>([]);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const resetIssue = () => {
     setPage(1);
@@ -23,6 +25,7 @@ const IssueProvider = ({children}: {children: JSX.Element}) => {
   };
 
   const fetchIssue = async (value = 1) => {
+    setIsLoading(true);
     try {
       const res = await axios.get(
         'https://api.github.com/repos/angular/angular-cli/issues',
@@ -35,6 +38,8 @@ const IssueProvider = ({children}: {children: JSX.Element}) => {
     } catch (e) {
       Alert.alert('API호출 에러');
       console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,6 +51,7 @@ const IssueProvider = ({children}: {children: JSX.Element}) => {
         page,
         setPage,
         resetIssue,
+        isLoading,
       }}>
       {children}
     </IssueContext.Provider>

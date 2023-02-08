@@ -18,7 +18,7 @@ const DetailIssueScreen = ({route}: Props) => {
       <RowContainer style={styles.spaceBetween}>
         <Image source={{uri: issue?.user?.avatar_url}} style={styles.avatar} />
         <RowContainer style={styles.topBox}>
-          <View>
+          <View style={{flex: 1}}>
             <RowContainer>
               <Bold15Label
                 text={`#${issue?.number}`}
@@ -36,6 +36,8 @@ const DetailIssueScreen = ({route}: Props) => {
                 text={issue?.user?.login}
                 style={styles.defaultMarginRight}
               />
+            </RowContainer>
+            <RowContainer style={{marginTop: 5}}>
               <Normal13Label text={'작성일 '} />
               <Normal13Label
                 text={dayjs(issue?.updated_at).format('YYYY년 MM월 DD일')}
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     borderBottomWidth: 1,
     paddingBottom: 10,
+    flex: 1,
   },
   body: {
     marginTop: 40,
