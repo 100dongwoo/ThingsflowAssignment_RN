@@ -1,16 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {FlatList, Alert, Text, View, Image, StyleSheet} from 'react-native';
 import {useFetch} from '../../hooks/useFetch';
 import IssueItem from '../../components/IssueItem';
+import axios from 'axios';
 
 const MainScreen = () => {
   const [page, setPage] = useState([]);
+  const [response, setResponse] = useState<any>(null);
 
-  const {response, error}: {response: []; error: object} = useFetch(
-    'https://api.github.com/repos/angular/angular-cli/issues',
-    {sort: 'comments', per_page: 20, page: 1, state: 'open'},
-  );
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(
+        'https://api.github.com/repos/angular/angular-cli/issues',
+        {params: {sort: 'comments', per_page: 20, page: 1, state: 'open'}},
+      );
+      setResponse(res?.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const onPressIssue = (item: any) => {
     console.log(item);

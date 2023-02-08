@@ -13,6 +13,7 @@ const RootStack = () => {
         headerShown: true,
         headerShadowVisible: false,
         headerTitleAlign: 'center',
+        title: 'Angular-cli/issues',
       }}>
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="DetailIssue" component={DetailIssueScreen} />
