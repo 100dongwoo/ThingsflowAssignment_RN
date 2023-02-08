@@ -1,33 +1,41 @@
 import React from 'react';
 import {StyleProp, StyleSheet, Text, TextProps, TextStyle} from 'react-native';
+import styled from 'styled-components/native';
 
 interface LabelProps extends TextProps {
   text: string | number;
   style?: StyleProp<TextStyle>;
 }
+
 export function Bold15Label({style, text, ...props}: LabelProps) {
   return (
-    <Text style={[styles.bold, styles.size15, style]} {...props}>
+    <Bold15 style={style} {...props}>
       {text}
-    </Text>
+    </Bold15>
   );
 }
 export function Normal15Label({style, text, ...props}: LabelProps) {
   return (
-    <Text style={[styles.size15, style]} {...props}>
+    <Normal15 style={style} {...props}>
       {text}
-    </Text>
+    </Normal15>
   );
 }
 export function Normal13Label({style, text, ...props}: LabelProps) {
   return (
-    <Text style={[styles.size13, style]} {...props}>
+    <Normal13 style={style} {...props}>
       {text}
-    </Text>
+    </Normal13>
   );
 }
-const styles = StyleSheet.create({
-  bold: {fontWeight: '600'},
-  size15: {fontSize: 15, lineHeight: 23},
-  size13: {fontSize: 13, lineHeight: 20},
-});
+const Normal15 = styled(Text)`
+  font-size: 15px;
+  line-height: 23px;
+`;
+const Normal13 = styled(Text)`
+  font-size: 13px;
+  line-height: 20px;
+`;
+const Bold15 = styled(Normal15)`
+  font-weight: 600;
+`;
