@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleProp, StyleSheet, Text, TextProps, TextStyle} from 'react-native';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 interface LabelProps extends TextProps {
   text: string | number;
