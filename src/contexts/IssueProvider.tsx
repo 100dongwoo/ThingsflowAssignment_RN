@@ -33,7 +33,7 @@ const IssueProvider = ({children}: {children: JSX.Element}) => {
           params: {sort: 'comments', per_page: 10, page: value, state: 'open'},
         },
       );
-      console.log(res.data);
+      console.log('api 호출', res.data);
       setIssues(issues.concat(res?.data));
     } catch (e) {
       Alert.alert('API호출 에러');

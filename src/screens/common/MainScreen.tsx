@@ -6,11 +6,13 @@ import {
   Image,
   StyleSheet,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import IssueItem from '../../components/IssueItem';
 import {IssueContext} from '../../contexts/IssueProvider';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Bold15Label} from '../../components/Label';
+import Touchable from '../../components/Button/Touchable';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 const MainScreen = ({navigation}: Props) => {
@@ -52,12 +54,17 @@ const MainScreen = ({navigation}: Props) => {
             {issueContext?.issues &&
               issueContext?.issues.length >= 5 &&
               index === 3 && (
-                <Image
-                  source={{
-                    uri: 'https://hellobot-test.s3.ap-northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7',
-                  }}
-                  style={styles.image}
-                />
+                <Touchable
+                  onPress={() => {
+                    Linking.openURL('https://thingsflow.com/ko/home');
+                  }}>
+                  <Image
+                    source={{
+                      uri: 'https://hellobot-test.s3.ap-northeast-2.amazonaws.com/image/01fdd797-0477-4717-8d70-8551150463f7',
+                    }}
+                    style={styles.image}
+                  />
+                </Touchable>
               )}
           </>
         )}
